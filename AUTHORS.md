@@ -1,9 +1,9 @@
 # Authors
 ## Supervisor:
-- [Sara Alkhodair]()
+- [Sarah Alkhodair](https://github.com/sarahalkhodair)
 
 ## Scrum Master:
-- [Maha AlYahaya](https://github.com/malyahya-ksu)
+- [Maha Alyahaya](https://github.com/malyahya-ksu)
 
 ## Developers:
 - [Razan Alsuleimi](https://github.com/RazanAlsuleimi)
