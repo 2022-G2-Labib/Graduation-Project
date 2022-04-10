@@ -1,5 +1,5 @@
  # Labib🦻🏻
-Labib is an android app that helps people who are interested to learn about Arabic sign language by giving the learner Numbers, Alphabet, and words lessons. Moreover, Labib provided quizzes in two types the first one with interactive games and the second one with AI quizzes. 
+Labib is an android application that helps people who are interested in learning Arabic sign language. Labib will provide the learner with Numbers, Alphabet, and words lessons. as well as two types of quizzes, the first one will be interactive games and the second one will be AI quizzes. 
 
 ![Happy](https://user-images.githubusercontent.com/90304225/160501693-848b4811-ec1d-40c1-9c52-04675a21807b.PNG)
 
