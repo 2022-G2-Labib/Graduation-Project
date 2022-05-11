@@ -1,30 +1,30 @@
-import 'testmodel.dart';
+import 'PlacementTestModel.dart';
 
-TestModel loadQuestion(int questionIndex) {
-  List<TestModel> questionList = [
-    TestModel("ماذا تمثل الاشارة؟", "0.png", "رقم الصفر", [
+PlacementTestModel loadQuestion(int questionIndex) {
+  List<PlacementTestModel> questionList = [
+    PlacementTestModel("ماذا تمثل الاشارة؟", "0.png", "رقم الصفر", [
       "حرف السين",
       "رقم التسعة",
     ]),
-    TestModel(
+    PlacementTestModel(
         "ماذا تمثل الاشارة", "6.png", "رقم الستة", ["حرف الواو", "رقم الواحد"]),
-    TestModel(
-        "ماذا تمثل الاشارة؟", "ن.png", "حرف النون", ["حرف الهاء", "حرف الجيم"]),
-    TestModel("ماذا تمثل الاشارة؟", "9.png", "رقم التسعة",
+    PlacementTestModel(
+        "ماذا تمثل الاشارة؟", "N.png", "حرف النون", ["حرف الهاء", "حرف الجيم"]),
+    PlacementTestModel("ماذا تمثل الاشارة؟", "9.png", "رقم التسعة",
         ["حرف الدال", "حرف الباء"]),
-    TestModel("ماذا تمثل الاشارة؟", "7.png", "رقم السبعة",
+    PlacementTestModel("ماذا تمثل الاشارة؟", "7.png", "رقم السبعة",
         ["رقم الثمانية", "حرف الطاء"]),
-    TestModel(
-        "ماذا تمثل الاشارة؟", "م.png", "حرف الميم", ["حرف السين", "حرف الياء"]),
-    TestModel("ماذا تمثل الاشارة؟", "ر.png", "حرف الراء", [
+    PlacementTestModel(
+        "ماذا تمثل الاشارة؟", "M.png", "حرف الميم", ["حرف السين", "حرف الياء"]),
+    PlacementTestModel("ماذا تمثل الاشارة؟", "R.png", "حرف الراء", [
       "حرف الباء",
       "رقم الاثنين",
     ]),
-    TestModel(
-        "ماذا تمثل الاشارة؟", "ا.png", "حرف الألف", ["حرف الثاء", "حرف الياء"]),
-    TestModel(
-        "ماذا تمثل الاشارة؟", "س.png", "حرف السين", ["حرف الصاد", "حرف الذال"]),
-    TestModel("ماذا تمثل الاشارة؟", "ي.png", "حرف الياء",
+    PlacementTestModel(
+        "ماذا تمثل الاشارة؟", "A.png", "حرف الألف", ["حرف الثاء", "حرف الياء"]),
+    PlacementTestModel(
+        "ماذا تمثل الاشارة؟", "S.png", "حرف السين", ["حرف الصاد", "حرف الذال"]),
+    PlacementTestModel("ماذا تمثل الاشارة؟", "Y.png", "حرف الياء",
         ["حرف الهاء", "رقم الاربعة"]),
   ];
   return questionList[questionIndex];

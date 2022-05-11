@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace, unnecessary_const
+
 import 'package:flutter/material.dart';
 
 //import 'package:flutter/material.dart';
@@ -10,10 +12,10 @@ Widget answerCard(String text, BuildContext context, {bool? answer}) {
       color: (answer == null)
           ? Colors.white
           : (answer)
-              ? Color.fromARGB(202, 106, 179, 108)
-              : Color.fromARGB(202, 219, 111, 104),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(20))),
+              ? const Color.fromARGB(202, 106, 179, 108)
+              : const Color.fromARGB(202, 219, 111, 104),
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(const Radius.circular(20))),
       elevation: 3.5,
       // color: Colors.green,
       child: Padding(
@@ -21,7 +23,7 @@ Widget answerCard(String text, BuildContext context, {bool? answer}) {
         child: Center(
           child: Text(
             text,
-            style: TextStyle(color: Colors.black, fontSize: 18),
+            style: const TextStyle(color: Colors.black, fontSize: 18),
             textAlign: TextAlign.center,
           ),
         ),

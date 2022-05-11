@@ -1,8 +1,11 @@
+// ignore_for_file: avoid_print, curly_braces_in_flow_control_structures, file_names, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_is_not_empty, dead_code, non_constant_identifier_names, prefer_const_literals_to_create_immutables, prefer_final_fields, must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:labeeb_app/DataBase/database_service.dart';
+import 'package:labeeb_app/Numbers/AllNumberlessons.dart';
 
 class Numberlesson extends StatefulWidget {
-  final String widgtNumber;
+  int widgtNumber;
   Numberlesson(this.widgtNumber);
 
   @override
@@ -21,7 +24,8 @@ class _NumberlessonState extends State<Numberlesson> {
   }
 
   Future<bool> initAsync() async {
-    String d = await _databaseService.retrieveDone(widget.widgtNumber);
+    String d =
+        await _databaseService.retrieveDone(widget.widgtNumber.toString());
     done = d.toString();
     if (!done.isEmpty) return true;
 
@@ -36,53 +40,14 @@ class _NumberlessonState extends State<Numberlesson> {
         future: initAsync(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
 
           return Scaffold(
             key: _scaffoldKey,
-            endDrawer: Container(
-              width: 250,
-              child: Drawer(
-                child: ListView(
-                  padding: EdgeInsets.zero,
-                  children: [
-                    SizedBox(
-                      height: 250.0,
-                      child: DrawerHeader(
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(153, 192, 219, 241)),
-                        child: Image(
-                          image: AssetImage('assets/Reading.PNG'),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    ListTile(
-                      title: Text(
-                        "مصادر اضافية",
-                        textAlign: TextAlign.right,
-                      ),
-                    ),
-                    Divider(
-                      thickness: 2,
-                    ),
-                    ListTile(
-                      title: Text(
-                        "تواصل معنا",
-                        textAlign: TextAlign.right,
-                      ),
-                    ),
-                    Divider(
-                      thickness: 2,
-                    ),
-                  ],
-                ),
-              ),
-            ),
             body: Stack(
               children: [
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.width * 1.78,
                   child: Stack(children: [
@@ -116,8 +81,13 @@ class _NumberlessonState extends State<Numberlesson> {
                         right: null,
                         bottom: null,
                         child: GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, "/GeneratednumberLessonWidget"),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => AllNumberlessons(),
+                                  ));
+                            },
                             child: Image.asset(
                               "assets/images/back.png",
                               width: MediaQuery.of(context).size.width * 0.039,
@@ -125,23 +95,6 @@ class _NumberlessonState extends State<Numberlesson> {
                                   (MediaQuery.of(context).size.width * 1.78) *
                                       0.026,
                             ))),
-                    Positioned(
-                        //Hamburger bar
-                        left: MediaQuery.of(context).size.width * 0.872,
-                        top: (MediaQuery.of(context).size.width * 3.7) * 0.024,
-                        right: null,
-                        bottom: null,
-                        child: GestureDetector(
-                          onTap: () {
-                            _scaffoldKey.currentState!.openEndDrawer();
-                          },
-                          child: Image.asset(
-                            "assets/images/Hamburgerbar.png",
-                            width: MediaQuery.of(context).size.width * 0.069,
-                            height: (MediaQuery.of(context).size.width * 3.7) *
-                                0.017,
-                          ),
-                        )),
                     Positioned(
                       //footer
                       left: MediaQuery.of(context).size.width * 0.142,
@@ -159,8 +112,15 @@ class _NumberlessonState extends State<Numberlesson> {
                           right: null,
                           bottom: null,
                           child: GestureDetector(
-                            onTap: () => Navigator.pushNamed(context,
-                                '/Generated' + MoveSwitch('N') + 'Widget'),
+                            onTap: () {
+                              if (widget.widgtNumber == 9) {
+                                widget.widgtNumber = 0;
+                                setState(() {});
+                              } else {
+                                widget.widgtNumber = (widget.widgtNumber + 1);
+                                setState(() {});
+                              }
+                            },
                             child: Image.asset(
                               "assets/images/Next.png",
                               width: MediaQuery.of(context).size.width * 0.111,
@@ -177,10 +137,7 @@ class _NumberlessonState extends State<Numberlesson> {
                           child: GestureDetector(
                             onTap: () async {
                               await _databaseService
-                                  .updateDone(widget.widgtNumber);
-                              /* List<Lesson> queryRows =
-                                  await _databaseService.retrieve(widget.widgtNumber);
-                              print(queryRows);*/
+                                  .updateDone(widget.widgtNumber.toString());
                               setState(() {});
                             },
                             child: Image.asset(
@@ -197,8 +154,16 @@ class _NumberlessonState extends State<Numberlesson> {
                           right: null,
                           bottom: null,
                           child: GestureDetector(
-                            onTap: () => Navigator.pushNamed(context,
-                                '/Generated' + MoveSwitch('P') + 'Widget'),
+                            onTap: () {
+                              if (widget.widgtNumber == 0) {
+                                print(widget.widgtNumber);
+                                widget.widgtNumber = 9;
+                                setState(() {});
+                              } else {
+                                widget.widgtNumber = (widget.widgtNumber - 1);
+                                setState(() {});
+                              }
+                            },
                             child: Image.asset(
                               "assets/images/Previous.png",
                               width: MediaQuery.of(context).size.width * 0.111,
@@ -216,8 +181,9 @@ class _NumberlessonState extends State<Numberlesson> {
                       width: MediaQuery.of(context).size.width * 0.735,
                       height:
                           (MediaQuery.of(context).size.width * 1.78) * 0.428,
-                      child: Image.asset(
-                          'assets/images/' + widget.widgtNumber + 'l.png'),
+                      child: Image.asset('assets/images/' +
+                          widget.widgtNumber.toString() +
+                          'l.png'),
                     ),
                     Positioned(
                       left: MediaQuery.of(context).size.width * 0.189,
@@ -225,8 +191,13 @@ class _NumberlessonState extends State<Numberlesson> {
                       right: null,
                       bottom: null,
                       child: GestureDetector(
-                        onTap: () => Navigator.pushNamed(
-                            context, '/GeneratednumberLessonWidget'),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AllNumberlessons(),
+                              ));
+                        },
                         child: Image.asset(
                           'assets/images/x.png',
                           width: MediaQuery.of(context).size.width * 0.019,
@@ -243,9 +214,14 @@ class _NumberlessonState extends State<Numberlesson> {
                       width: MediaQuery.of(context).size.width * 0.111,
                       height: MediaQuery.of(context).size.width * 0.111,
                       child: GestureDetector(
-                        onTap: () => Navigator.pushNamed(
-                            context, '/GeneratednumberLessonWidget'),
-                        child: Text("   "),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AllNumberlessons(),
+                              ));
+                        },
+                        child: const Text("   "),
                       ),
                     ),
                   ]),
@@ -256,81 +232,5 @@ class _NumberlessonState extends State<Numberlesson> {
         },
       ),
     );
-  }
-
-  String MoveSwitch(String move) {
-    switch (widget.widgtNumber) {
-      case '0':
-        if (move == 'N')
-          return '1';
-        else
-          return '9';
-        break;
-      case '1':
-        if (move == 'N')
-          return '2';
-        else
-          return '0';
-        break;
-
-      case "2":
-        if (move == "N")
-          return "3";
-        else
-          return "1";
-        break;
-
-      case '3':
-        if (move == 'N')
-          return '4';
-        else
-          return '2';
-        break;
-
-      case '4':
-        if (move == 'N')
-          return '5';
-        else
-          return '3';
-        break;
-
-      case '5':
-        if (move == 'N')
-          return '6';
-        else
-          return '4';
-        break;
-
-      case '6':
-        if (move == 'N')
-          return '7';
-        else
-          return '5';
-        break;
-
-      case '7':
-        if (move == 'N')
-          return '8';
-        else
-          return '6';
-        break;
-
-      case '8':
-        if (move == 'N')
-          return '9';
-        else
-          return '7';
-        break;
-
-      case '9':
-        if (move == 'N')
-          return '1';
-        else
-          return '8';
-        break;
-      default:
-        print('Letter Not Found');
-    }
-    return '0';
   }
 }

@@ -1,8 +1,12 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, file_names, use_key_in_widget_constructors, must_be_immutable, prefer_is_not_empty, prefer_final_fields
+
 import 'package:flutter/material.dart';
 import '../DataBase/database_service.dart';
 import '../HomePage.dart';
 import '../DataBase/Lesson.dart';
 import 'package:labeeb_app/PlacementQuiz/result.dart';
+import 'package:labeeb_app/Numbers/Numberlesson.dart';
+import '../MainSectionPage.dart';
 
 /* All Number lessons interface */
 class AllNumberlessons extends StatelessWidget {
@@ -22,48 +26,9 @@ class AllNumberlessons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      endDrawer: Container(
-        width: 250,
-        child: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              SizedBox(
-                height: 250.0,
-                child: DrawerHeader(
-                  decoration:
-                      BoxDecoration(color: Color.fromARGB(153, 192, 219, 241)),
-                  child: Image(
-                    image: AssetImage('assets/Reading.PNG'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "مصادر اضافية",
-                  textAlign: TextAlign.right,
-                ),
-              ),
-              Divider(
-                thickness: 2,
-              ),
-              ListTile(
-                title: Text(
-                  "تواصل معنا",
-                  textAlign: TextAlign.right,
-                ),
-              ),
-              Divider(
-                thickness: 2,
-              ),
-            ],
-          ),
-        ),
-      ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        child: Container(
+        child: SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.width * 1.78,
             child: Stack(alignment: Alignment.center, children: [
@@ -90,30 +55,19 @@ class AllNumberlessons extends StatelessWidget {
                     height: (MediaQuery.of(context).size.width * 1.78) * 0.048,
                   )),
               Positioned(
-                  //Hamburger bar
-                  left: MediaQuery.of(context).size.width * 0.872,
-                  top: (MediaQuery.of(context).size.width * 3.7) * 0.024,
-                  right: null,
-                  bottom: null,
-                  child: GestureDetector(
-                    onTap: () {
-                      _scaffoldKey.currentState!.openEndDrawer();
-                    },
-                    child: Image.asset(
-                      "assets/images/Hamburgerbar.png",
-                      width: MediaQuery.of(context).size.width * 0.069,
-                      height: (MediaQuery.of(context).size.width * 3.7) * 0.017,
-                    ),
-                  )),
-              Positioned(
                   //back
                   left: MediaQuery.of(context).size.width * 0.056,
                   top: (MediaQuery.of(context).size.width * 1.78) * 0.055,
                   right: null,
                   bottom: null,
                   child: GestureDetector(
-                      onTap: () => Navigator.pushNamed(
-                          context, "/GeneratedMainSectionFromNumbers"),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MainSectionPage('B'),
+                            ));
+                      },
                       child: Image.asset(
                         "assets/images/back.png",
                         width: MediaQuery.of(context).size.width * 0.039,
@@ -123,7 +77,7 @@ class AllNumberlessons extends StatelessWidget {
               Positioned(
                   //Home button
                   left: MediaQuery.of(context).size.width * 0.462,
-                  top: (MediaQuery.of(context).size.width * 1.78) * 0.901,
+                  top: (MediaQuery.of(context).size.width * 1.78) * 0.88,
                   right: null,
                   bottom: null,
                   width: MediaQuery.of(context).size.width * 0.075,
@@ -144,7 +98,7 @@ class AllNumberlessons extends StatelessWidget {
                   future: initAsync(),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
-                      return CircularProgressIndicator();
+                      return const CircularProgressIndicator();
                     }
 
                     return Positioned(
@@ -158,8 +112,13 @@ class AllNumberlessons extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.29,
                           height: MediaQuery.of(context).size.width * 0.29,
                           child: GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, '/Generated0Widget'),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Numberlesson(0),
+                                  ));
+                            },
                             child: Image.asset('assets/images/0small' +
                                 donelist[28].done.toString() +
                                 '.png'),
@@ -174,8 +133,13 @@ class AllNumberlessons extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.29,
                           height: MediaQuery.of(context).size.width * 0.29,
                           child: GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, '/Generated1Widget'),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Numberlesson(1),
+                                  ));
+                            },
                             child: Image.asset('assets/images/1small' +
                                 donelist[29].done.toString() +
                                 '.png'),
@@ -190,8 +154,13 @@ class AllNumberlessons extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.29,
                           height: MediaQuery.of(context).size.width * 0.29,
                           child: GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, '/Generated2Widget'),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Numberlesson(2),
+                                  ));
+                            },
                             child: Image.asset('assets/images/2small' +
                                 donelist[30].done.toString() +
                                 '.png'),
@@ -206,8 +175,13 @@ class AllNumberlessons extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.29,
                           height: MediaQuery.of(context).size.width * 0.29,
                           child: GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, '/Generated3Widget'),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Numberlesson(3),
+                                  ));
+                            },
                             child: Image.asset('assets/images/3small' +
                                 donelist[31].done.toString() +
                                 '.png'),
@@ -222,8 +196,13 @@ class AllNumberlessons extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.29,
                           height: MediaQuery.of(context).size.width * 0.29,
                           child: GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, '/Generated4Widget'),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Numberlesson(4),
+                                  ));
+                            },
                             child: Image.asset('assets/images/4small' +
                                 donelist[32].done.toString() +
                                 '.png'),
@@ -238,8 +217,13 @@ class AllNumberlessons extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.29,
                           height: MediaQuery.of(context).size.width * 0.29,
                           child: GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, '/Generated5Widget'),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Numberlesson(5),
+                                  ));
+                            },
                             child: Image.asset('assets/images/5small' +
                                 donelist[33].done.toString() +
                                 '.png'),
@@ -254,8 +238,13 @@ class AllNumberlessons extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.29,
                           height: MediaQuery.of(context).size.width * 0.29,
                           child: GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, '/Generated6Widget'),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Numberlesson(6),
+                                  ));
+                            },
                             child: Image.asset('assets/images/6small' +
                                 donelist[34].done.toString() +
                                 '.png'),
@@ -270,8 +259,13 @@ class AllNumberlessons extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.29,
                           height: MediaQuery.of(context).size.width * 0.29,
                           child: GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, '/Generated7Widget'),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Numberlesson(7),
+                                  ));
+                            },
                             child: Image.asset('assets/images/7small' +
                                 donelist[35].done.toString() +
                                 '.png'),
@@ -286,8 +280,13 @@ class AllNumberlessons extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.29,
                           height: MediaQuery.of(context).size.width * 0.29,
                           child: GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, '/Generated8Widget'),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Numberlesson(8),
+                                  ));
+                            },
                             child: Image.asset('assets/images/8small' +
                                 donelist[36].done.toString() +
                                 '.png'),
@@ -302,8 +301,13 @@ class AllNumberlessons extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.29,
                           height: MediaQuery.of(context).size.width * 0.29,
                           child: GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, '/Generated9Widget'),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Numberlesson(9),
+                                  ));
+                            },
                             child: Image.asset('assets/images/9small' +
                                 donelist[37].done.toString() +
                                 '.png'),

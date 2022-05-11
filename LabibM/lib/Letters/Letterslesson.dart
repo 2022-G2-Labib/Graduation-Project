@@ -1,8 +1,11 @@
+// ignore_for_file: avoid_print, file_names, prefer_const_constructors_in_immutables, use_key_in_widget_constructors, prefer_is_not_empty, prefer_final_fields, prefer_const_literals_to_create_immutables, non_constant_identifier_names, dead_code, must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:labeeb_app/DataBase/database_service.dart';
+import 'package:labeeb_app/Letters/AllLetterlessons.dart';
 
 class Letterslesson extends StatefulWidget {
-  final String widgtName;
+  String widgtName;
   Letterslesson(this.widgtName);
 
   @override
@@ -14,6 +17,36 @@ class Letterslesson extends StatefulWidget {
 class _LetterslessonState extends State<Letterslesson> {
   final DatabaseService _databaseService = DatabaseService();
   late String done;
+  List<String> letter = [
+    'A',
+    'B',
+    'T',
+    'Th',
+    'G',
+    'Ha',
+    'Kh',
+    'D',
+    'Tha',
+    'R',
+    'Z',
+    'S',
+    'Sh',
+    'Ss',
+    'Da',
+    'Ta',
+    'Tta',
+    'Ain',
+    'Ain2',
+    'F',
+    'Kaf',
+    'K',
+    'Lam',
+    'M',
+    'N',
+    'H',
+    'W',
+    'Y'
+  ];
 
   @override
   void initState() {
@@ -36,17 +69,17 @@ class _LetterslessonState extends State<Letterslesson> {
         future: initAsync(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
           return Scaffold(
             key: _scaffoldKey,
-            endDrawer: Container(
+            endDrawer: SizedBox(
               width: 250,
               child: Drawer(
                 child: ListView(
                   padding: EdgeInsets.zero,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 250.0,
                       child: DrawerHeader(
                         decoration: BoxDecoration(
@@ -57,22 +90,22 @@ class _LetterslessonState extends State<Letterslesson> {
                         ),
                       ),
                     ),
-                    ListTile(
+                    const ListTile(
                       title: Text(
                         "مصادر اضافية",
                         textAlign: TextAlign.right,
                       ),
                     ),
-                    Divider(
+                    const Divider(
                       thickness: 2,
                     ),
-                    ListTile(
+                    const ListTile(
                       title: Text(
                         "تواصل معنا",
                         textAlign: TextAlign.right,
                       ),
                     ),
-                    Divider(
+                    const Divider(
                       thickness: 2,
                     ),
                   ],
@@ -81,7 +114,7 @@ class _LetterslessonState extends State<Letterslesson> {
             ),
             body: Stack(
               children: [
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.width * 1.78,
                   child: Stack(children: [
@@ -115,8 +148,13 @@ class _LetterslessonState extends State<Letterslesson> {
                         right: null,
                         bottom: null,
                         child: GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, "/GeneratedLetterlessonsWidget"),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => AllLetterlessons(),
+                                  ));
+                            },
                             child: Image.asset(
                               "assets/images/back.png",
                               width: MediaQuery.of(context).size.width * 0.039,
@@ -141,8 +179,16 @@ class _LetterslessonState extends State<Letterslesson> {
                           right: null,
                           bottom: null,
                           child: GestureDetector(
-                            onTap: () => Navigator.pushNamed(context,
-                                '/Generated' + MoveSwitch('N') + 'Widget'),
+                            onTap: () {
+                              if (widget.widgtName == 'Y') {
+                                widget.widgtName = 'A';
+                                setState(() {});
+                              } else {
+                                widget.widgtName = letter.elementAt(
+                                    letter.indexOf(widget.widgtName) + 1);
+                                setState(() {});
+                              }
+                            },
                             child: Image.asset(
                               "assets/images/Next.png",
                               width: MediaQuery.of(context).size.width * 0.111,
@@ -177,8 +223,16 @@ class _LetterslessonState extends State<Letterslesson> {
                           right: null,
                           bottom: null,
                           child: GestureDetector(
-                            onTap: () => Navigator.pushNamed(context,
-                                '/Generated' + MoveSwitch('P') + 'Widget'),
+                            onTap: () {
+                              if (widget.widgtName == 'A') {
+                                widget.widgtName = 'Y';
+                                setState(() {});
+                              } else {
+                                widget.widgtName = letter.elementAt(
+                                    letter.indexOf(widget.widgtName) - 1);
+                                setState(() {});
+                              }
+                            },
                             child: Image.asset(
                               "assets/images/Previous.png",
                               width: MediaQuery.of(context).size.width * 0.111,
@@ -205,8 +259,13 @@ class _LetterslessonState extends State<Letterslesson> {
                       right: null,
                       bottom: null,
                       child: GestureDetector(
-                        onTap: () => Navigator.pushNamed(
-                            context, '/GeneratedLetterlessonsWidget'),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AllLetterlessons(),
+                              ));
+                        },
                         child: Image.asset(
                           'assets/images/x.png',
                           width: MediaQuery.of(context).size.width * 0.019,
@@ -223,9 +282,14 @@ class _LetterslessonState extends State<Letterslesson> {
                       width: MediaQuery.of(context).size.width * 0.111,
                       height: MediaQuery.of(context).size.width * 0.111,
                       child: GestureDetector(
-                        onTap: () => Navigator.pushNamed(
-                            context, '/GeneratedLetterlessonsWidget'),
-                        child: Text("   "),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AllLetterlessons(),
+                              ));
+                        },
+                        child: const Text("   "),
                       ),
                     ),
                   ]),
@@ -236,208 +300,5 @@ class _LetterslessonState extends State<Letterslesson> {
         },
       ),
     );
-  }
-
-  String MoveSwitch(String move) {
-    switch (widget.widgtName) {
-      case "A":
-        if (move == 'N')
-          return "B";
-        else
-          return "Y";
-        break;
-
-      case "B":
-        if (move == "N")
-          return "T";
-        else
-          return "A";
-        break;
-
-      case 'T':
-        if (move == 'N')
-          return 'Th';
-        else
-          return 'B';
-        break;
-
-      case 'Th':
-        if (move == 'N')
-          return 'G';
-        else
-          return 'T';
-        break;
-
-      case 'G':
-        if (move == 'N')
-          return 'Ha';
-        else
-          return 'Th';
-        break;
-
-      case 'Ha':
-        if (move == 'N')
-          return 'Kh';
-        else
-          return 'G';
-        break;
-
-      case 'Kh':
-        if (move == 'N')
-          return 'D';
-        else
-          return 'Ha';
-        break;
-
-      case 'D':
-        if (move == 'N')
-          return 'Tha';
-        else
-          return 'Kh';
-        break;
-
-      case 'Tha':
-        if (move == 'N')
-          return 'R';
-        else
-          return 'D';
-        break;
-
-      case 'R':
-        if (move == 'N')
-          return 'Z';
-        else
-          return 'Tha';
-        break;
-
-      case 'Z':
-        if (move == 'N')
-          return 'S';
-        else
-          return 'R';
-        break;
-
-      case 'S':
-        if (move == 'N')
-          return 'Sh';
-        else
-          return 'Z';
-        break;
-
-      case 'Sh':
-        if (move == 'N')
-          return 'Ss';
-        else
-          return 'S';
-        break;
-
-      case 'Ss':
-        if (move == 'N')
-          return 'Da';
-        else
-          return 'Sh';
-        break;
-
-      case 'Da':
-        if (move == 'N')
-          return 'Ta';
-        else
-          return 'Ss';
-        break;
-
-      case 'Ta':
-        if (move == 'N')
-          return 'Tta';
-        else
-          return 'Da';
-        break;
-
-      case 'Tta':
-        if (move == 'N')
-          return 'Ain';
-        else
-          return 'Ta';
-        break;
-
-      case 'Ain':
-        if (move == 'N')
-          return 'Ain2';
-        else
-          return 'Tta';
-        break;
-
-      case 'Ain2':
-        if (move == 'N')
-          return 'F';
-        else
-          return 'Ain';
-        break;
-
-      case 'F':
-        if (move == 'N')
-          return 'Kaf';
-        else
-          return 'Ain2';
-        break;
-
-      case 'Kaf':
-        if (move == 'N')
-          return 'K';
-        else
-          return 'F';
-        break;
-
-      case 'K':
-        if (move == 'N')
-          return 'Lam';
-        else
-          return 'Kaf';
-        break;
-
-      case 'Lam':
-        if (move == 'N')
-          return 'M';
-        else
-          return 'K';
-        break;
-
-      case 'M':
-        if (move == 'N')
-          return 'N';
-        else
-          return 'Lam';
-        break;
-
-      case 'N':
-        if (move == 'N')
-          return 'H';
-        else
-          return 'M';
-        break;
-
-      case 'H':
-        if (move == 'N')
-          return 'W';
-        else
-          return 'N';
-        break;
-
-      case 'W':
-        if (move == 'N')
-          return 'Y';
-        else
-          return 'H';
-        break;
-
-      case 'Y':
-        if (move == 'N')
-          return 'A';
-        else
-          return 'W';
-        break;
-      default:
-        print('Letter Not Found');
-    }
-    return 'A';
   }
 }

@@ -1,11 +1,76 @@
+// ignore_for_file: file_names, must_be_immutable, use_key_in_widget_constructors, prefer_final_fields, prefer_const_literals_to_create_immutables, unrelated_type_equality_checks, prefer_const_constructors, sized_box_for_whitespace, deprecated_member_use
+
 import 'package:flutter/material.dart';
+import 'package:labeeb_app/DataBase/Lesson.dart';
+import 'package:labeeb_app/DataBase/database_service.dart';
 import 'HomePage.dart';
 import 'QuizSectionPage.dart';
 import 'PlacementQuiz/result.dart';
 
 class MainSectionPage extends StatelessWidget {
+  final DatabaseService _databaseService = DatabaseService();
+
   String page = 'A';
   MainSectionPage(this.page);
+
+  Future<int> checkDone() async {
+    List<Lesson> queryRows = await _databaseService.lessons();
+
+    int length = 0;
+    int i = 0;
+    if (page == 'A') {
+      length = 27;
+      i = 0;
+    } else {
+      if (page == 'B') {
+        length = 37;
+        i = 28;
+      } else {
+        if (page == 'C') {
+          length = 57;
+          i = 38;
+        }
+      }
+    }
+
+    int count = 0;
+    for (i; i <= length; i++) {
+      count += queryRows[i].done;
+    }
+
+    switch (page) {
+      case 'A':
+        {
+          if (count == 28) {
+            return 1;
+          } else {
+            return 0;
+          }
+        }
+
+      case 'B':
+        {
+          if (count == 10) {
+            return 1;
+          } else {
+            return 0;
+          }
+        }
+      case 'C':
+        {
+          if (count == 20) {
+            return 1;
+          } else {
+            return 0;
+          }
+        }
+
+      default:
+        {
+          return 0;
+        }
+    }
+  }
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
@@ -13,48 +78,9 @@ class MainSectionPage extends StatelessWidget {
     return Material(
       child: Scaffold(
         key: _scaffoldKey,
-        endDrawer: Container(
-          width: 250,
-          child: Drawer(
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                SizedBox(
-                  height: 250.0,
-                  child: DrawerHeader(
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(153, 192, 219, 241)),
-                    child: Image(
-                      image: AssetImage('assets/Reading.PNG'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                ListTile(
-                  title: Text(
-                    "مصادر اضافية",
-                    textAlign: TextAlign.right,
-                  ),
-                ),
-                Divider(
-                  thickness: 2,
-                ),
-                ListTile(
-                  title: Text(
-                    "تواصل معنا",
-                    textAlign: TextAlign.right,
-                  ),
-                ),
-                Divider(
-                  thickness: 2,
-                ),
-              ],
-            ),
-          ),
-        ),
         body: Stack(
           children: [
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.width * 1.78,
               child: Stack(children: [
@@ -91,23 +117,6 @@ class MainSectionPage extends StatelessWidget {
                               0.026,
                         ))),
                 Positioned(
-                    //Hamburger bar
-                    left: MediaQuery.of(context).size.width * 0.872,
-                    top: (MediaQuery.of(context).size.width * 3.7) * 0.024,
-                    right: null,
-                    bottom: null,
-                    child: GestureDetector(
-                      onTap: () {
-                        _scaffoldKey.currentState!.openEndDrawer();
-                      },
-                      child: Image.asset(
-                        "assets/images/Hamburgerbar.png",
-                        width: MediaQuery.of(context).size.width * 0.069,
-                        height:
-                            (MediaQuery.of(context).size.width * 3.7) * 0.017,
-                      ),
-                    )),
-                Positioned(
                     //lesson button
                     left: MediaQuery.of(context).size.width * 0.047,
                     top: (MediaQuery.of(context).size.width * 1.78) * 0.468,
@@ -130,11 +139,60 @@ class MainSectionPage extends StatelessWidget {
                     right: null,
                     bottom: null,
                     child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => QuizSectionPage(page)));
+                      onTap: () async {
+                        int i = await checkDone();
+                        if (i == 1) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => QuizSectionPage(page)));
+                        } else {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  backgroundColor:
+                                      Color.fromARGB(221, 237, 238, 237),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  title: Center(
+                                      child: Text(
+                                    "عذرًا! يجب أن تنهي جميع الدروس حتى تستطيع إجراء الاختبار",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Color.fromARGB(255, 36, 68, 95)),
+                                  )),
+                                  content: Image.asset(
+                                    'assets/Sad.PNG',
+                                    height: 150,
+                                    width: 150,
+                                  ),
+                                  actions: [
+                                    Container(
+                                      width: 140,
+                                      child: RaisedButton.icon(
+                                        icon: Icon(
+                                          Icons.close,
+                                          color:
+                                              Color.fromARGB(255, 36, 68, 95),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        label: Text(
+                                          " إغلاق ",
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 36, 68, 95)),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              });
+                        }
                       },
                       child: Image.asset(
                         "assets/MainSectionPage/quizButton.png",

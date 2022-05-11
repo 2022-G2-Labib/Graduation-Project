@@ -1,29 +1,28 @@
-import 'package:auto_size_text/auto_size_text.dart';
+// ignore_for_file: avoid_unnecessary_containers, curly_braces_in_flow_control_structures, annotate_overrides, unused_local_variable, prefer_const_literals_to_create_immutables, must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'testPage.dart';
 import 'package:labeeb_app/HomePage.dart';
-import 'testPage.dart';
 
 class Result extends StatelessWidget {
-  final int points;
+  int points;
   static String score = "";
-  const Result({Key? key, required this.points}) : super(key: key);
 
-  Widget build(BuildContext context) {
-    var result = 10;
-    String res = result.toString();
-    String p = points.toString();
+  Result(this.points, {Key? key}) : super(key: key) {
     score = _result(points);
+  }
+  Widget build(BuildContext context) {
+  //  var result = 10;
+  // String res = result.toString();
+    String result = points.toString();
 
     return Scaffold(
       body: Container(
           //background
-          padding: EdgeInsets.all(9),
-          margin: EdgeInsets.all(1),
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.all(9),
+          margin: const EdgeInsets.all(1),
+          decoration: const BoxDecoration(
             image: DecorationImage(
-              image: const AssetImage('assets/PlacementQuiz/Result.png'),
+              image: AssetImage('assets/PlacementQuiz/Result.png'),
               fit: BoxFit.fill,
             ),
           ),
@@ -33,7 +32,7 @@ class Result extends StatelessWidget {
                 Align(
                   alignment: Alignment.topLeft,
                   child: IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.close,
                       color: Colors.grey,
                       size: 40,
@@ -49,14 +48,14 @@ class Result extends StatelessWidget {
                   ),
                 ),
                 Container(
-                    padding: EdgeInsets.all(9),
-                    margin: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(9),
+                    margin: const EdgeInsets.all(10),
                     child: Column(children: <Widget>[
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                         width: 80,
                       ),
-                      Text(
+                      const Text(
                         '!احسنت',
                         style: TextStyle(
                           //fontFamily: ArabicFonts.Cairo,
@@ -69,16 +68,16 @@ class Result extends StatelessWidget {
                       ),
                     ])),
                 Container(
-                    padding: EdgeInsets.all(9),
-                    margin: EdgeInsets.all(1),
+                    padding: const EdgeInsets.all(9),
+                    margin: const EdgeInsets.all(1),
                     child: Column(children: <Widget>[
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                         width: 10,
                       ),
                       Text(
-                        p + '/10 :لقد حصلت على',
-                        style: TextStyle(
+                        result + '/10 :لقد حصلت على',
+                        style: const TextStyle(
                           //fontFamily: ArabicFonts.Cairo,
                           package: 'google_fonts_arabic',
                           fontWeight: FontWeight.w600,
@@ -89,16 +88,16 @@ class Result extends StatelessWidget {
                       ),
                     ])),
                 Container(
-                    padding: EdgeInsets.all(1),
-                    margin: EdgeInsets.all(1),
+                    padding: const EdgeInsets.all(1),
+                    margin: const EdgeInsets.all(1),
                     child: Column(children: <Widget>[
-                      SizedBox(
+                      const SizedBox(
                         height: 1,
                         width: 1,
                       ),
                       Text(
                         ' مستواك الحالي: ' + score,
-                        style: TextStyle(
+                        style: const TextStyle(
                           //fontFamily: ArabicFonts.Cairo,
                           package: 'google_fonts_arabic',
                           fontWeight: FontWeight.w600,
@@ -109,15 +108,15 @@ class Result extends StatelessWidget {
                       ),
                     ])),
                 Container(
-                  padding: EdgeInsets.all(1),
-                  margin: EdgeInsets.all(1),
+                  padding: const EdgeInsets.all(1),
+                  margin: const EdgeInsets.all(1),
                   child: Center(
                       child: Column(
                     mainAxisAlignment:
                         MainAxisAlignment.spaceAround, //button position
                     //mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text("",
+                      const Text("",
                           style: TextStyle(
                               height: 20,
                               color: Color.fromARGB(255, 255, 255, 255))),
@@ -130,7 +129,7 @@ class Result extends StatelessWidget {
                                         score: score,
                                       )));
                         },
-                        child: Text(
+                        child: const Text(
                           " ابدأ التعلم",
                           style: TextStyle(
                               color: Color.fromARGB(255, 255, 255, 255),
@@ -138,7 +137,7 @@ class Result extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                         ),
                         style: ElevatedButton.styleFrom(
-                          primary: Color.fromARGB(255, 36, 68, 95),
+                          primary: const Color.fromARGB(255, 36, 68, 95),
                           fixedSize: const Size(200, 40),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),

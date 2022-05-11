@@ -1,11 +1,14 @@
+// ignore_for_file: unnecessary_const, file_names, unnecessary_import, use_key_in_widget_constructors
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import '../DataBase/database_service.dart';
 import 'questions.dart';
 import 'result.dart';
 import 'widgets.dart';
 import 'questionController.dart';
-import 'testmodel.dart';
+import 'PlacementTestModel.dart';
 
 class TestPage extends StatefulWidget {
   @override
@@ -13,9 +16,10 @@ class TestPage extends StatefulWidget {
 }
 
 class _TestPageState extends State<TestPage> {
+  final DatabaseService _databaseService = DatabaseService();
   int currentLevel = 1;
   int points = 0;
-  late TestModel currentQuestion;
+  late PlacementTestModel currentQuestion;
   late List<String> answers;
   late List<int> questionIndex;
   late List<bool?> answerValidation = [null, null, null, null];
@@ -48,19 +52,20 @@ class _TestPageState extends State<TestPage> {
       }
     });
 
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
 
     currentLevel++;
     if (currentLevel <= 10) {
       loadNewQuestion();
     } else {
+      update(points);
       Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => Result(
-                    points: this.points,
-                  )));
+          context, MaterialPageRoute(builder: (context) => Result(points)));
     }
+  }
+
+  Future<void> update(int testResult) async {
+    await _databaseService.updateTestResult(testResult, 'placementTest');
   }
 
   @override
@@ -68,9 +73,10 @@ class _TestPageState extends State<TestPage> {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/PlacementQuiz/test_background.png"),
+                image: const AssetImage(
+                    "assets/PlacementQuiz/test_background.png"),
                 fit: BoxFit.fill)),
         child: Center(
           child: Padding(
@@ -78,7 +84,7 @@ class _TestPageState extends State<TestPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Spacer(),
+                const Spacer(),
                 Image.asset(
                   'assets/PlacementQuiz/' + currentQuestion.image,
                   height: 270,
@@ -86,7 +92,7 @@ class _TestPageState extends State<TestPage> {
                 ),
                 Text(
                   currentQuestion.question,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Color.fromARGB(255, 21, 23, 54),
                       fontSize: 24,
                       fontWeight: FontWeight.bold),
@@ -113,7 +119,7 @@ class _TestPageState extends State<TestPage> {
                     validateAndShowQuestion(2);
                   },
                 ),
-                Spacer(),
+                const Spacer(),
               ],
             ),
           ),
