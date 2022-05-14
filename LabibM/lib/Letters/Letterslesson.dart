@@ -181,8 +181,11 @@ class _LetterslessonState extends State<Letterslesson> {
                           child: GestureDetector(
                             onTap: () {
                               if (widget.widgtName == 'Y') {
-                                widget.widgtName = 'A';
-                                setState(() {});
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => AllLetterlessons(),
+                                    ));
                               } else {
                                 widget.widgtName = letter.elementAt(
                                     letter.indexOf(widget.widgtName) + 1);
@@ -225,8 +228,6 @@ class _LetterslessonState extends State<Letterslesson> {
                           child: GestureDetector(
                             onTap: () {
                               if (widget.widgtName == 'A') {
-                                widget.widgtName = 'Y';
-                                setState(() {});
                               } else {
                                 widget.widgtName = letter.elementAt(
                                     letter.indexOf(widget.widgtName) - 1);

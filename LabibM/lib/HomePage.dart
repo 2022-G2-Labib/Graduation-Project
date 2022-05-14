@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, file_names, must_be_immutable, prefer_final_fields, prefer_const_literals_to_create_immutables, deprecated_member_use, unused_import
+// ignore_for_file: prefer_const_constructors, file_names, must_be_immutable, prefer_final_fields, prefer_const_literals_to_create_immutables, deprecated_member_use, unused_import, prefer_is_not_empty
 
 import 'package:flutter/material.dart';
 import 'ExtraResourses/resourcesPage.dart';
@@ -232,7 +232,7 @@ class HomePage extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () async {
                         await initAsync();
-                        if (score == 'مبتدئ' && (g != 11)) {
+                        if (score == 'مبتدئ' && (g != 15)) {
                           showDialog(
                               context: context,
                               builder: (BuildContext context) {

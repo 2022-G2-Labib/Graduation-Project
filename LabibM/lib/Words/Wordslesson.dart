@@ -177,8 +177,11 @@ class _WordslessonState extends State<Wordslesson> {
                           child: GestureDetector(
                             onTap: () {
                               if (widget.widgtWord == '160') {
-                                widget.widgtWord = '290';
-                                setState(() {});
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => AllWordlessons(),
+                                    ));
                               } else {
                                 widget.widgtWord = words.elementAt(
                                     words.indexOf(widget.widgtWord) + 1);

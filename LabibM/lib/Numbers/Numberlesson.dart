@@ -114,8 +114,12 @@ class _NumberlessonState extends State<Numberlesson> {
                           child: GestureDetector(
                             onTap: () {
                               if (widget.widgtNumber == 9) {
-                                widget.widgtNumber = 0;
-                                setState(() {});
+                                Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AllNumberlessons(),
+                            ));
+                                
                               } else {
                                 widget.widgtNumber = (widget.widgtNumber + 1);
                                 setState(() {});
@@ -156,9 +160,7 @@ class _NumberlessonState extends State<Numberlesson> {
                           child: GestureDetector(
                             onTap: () {
                               if (widget.widgtNumber == 0) {
-                                print(widget.widgtNumber);
-                                widget.widgtNumber = 9;
-                                setState(() {});
+                                
                               } else {
                                 widget.widgtNumber = (widget.widgtNumber - 1);
                                 setState(() {});

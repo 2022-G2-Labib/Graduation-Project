@@ -41,7 +41,7 @@ class _gradesState extends State<grades> {
               grades.letterspassedTest = true;
             }
 
-            if (result['numbersTest'] == 4) {
+            if (result['numbersTest'] == 8) {
               number = " اجتزت";
               grades.numbersspassedTest = true;
             }

@@ -162,8 +162,11 @@ class _Wordslesson2State extends State<Wordslesson2> {
                           child: GestureDetector(
                             onTap: () {
                               if (widget.widgtWord == '121') {
-                                widget.widgtWord = '92';
-                                setState(() {});
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => AllWordlessons2(),
+                                    ));
                               } else {
                                 widget.widgtWord = words.elementAt(
                                     words.indexOf(widget.widgtWord) + 1);
@@ -206,8 +209,6 @@ class _Wordslesson2State extends State<Wordslesson2> {
                           child: GestureDetector(
                             onTap: () {
                               if (widget.widgtWord == '92') {
-                                widget.widgtWord = '121';
-                                setState(() {});
                               } else {
                                 widget.widgtWord = words.elementAt(
                                     words.indexOf(widget.widgtWord) - 1);

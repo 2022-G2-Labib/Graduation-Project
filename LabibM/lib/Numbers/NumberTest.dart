@@ -37,7 +37,7 @@ class _NumberTest extends State<NumberTest> {
             _time(score);
             timer?.cancel();
           }
-          if (score == 4) {
+          if (score == 8) {
             timer?.cancel();
           }
         });
@@ -58,7 +58,7 @@ class _NumberTest extends State<NumberTest> {
     return Scaffold(
         body: Container(
       //background
-      padding: EdgeInsets.all(9),
+      padding: EdgeInsets.all(2),
       margin: EdgeInsets.all(1),
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -177,7 +177,7 @@ class _NumberTest extends State<NumberTest> {
                   child: GridView.builder(
                       itemCount: _game.gameImg!.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3, //counting how many box in row
+                        crossAxisCount: 4, //counting how many box in row
                         crossAxisSpacing: 16.0, // spacing between boxs x
                         mainAxisSpacing: 16.0, // spacing between boxs x
                       ),
@@ -245,7 +245,7 @@ class _NumberTest extends State<NumberTest> {
 
   bool _result(int score) {
     String sc = score.toString();
-    if (score == 4) {
+    if (score == 8) {
       //pop
       showDialog(
           context: context,
@@ -257,7 +257,7 @@ class _NumberTest extends State<NumberTest> {
               ),
               title: Center(
                   child: Text(
-                    "احسنت! لقد اجتزت الاختبار \n حصلت على نتيجة $sc/4",
+                "احسنت! لقد اجتزت الاختبار \n حصلت على نتيجة $sc/8",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 20, color: Color.fromARGB(255, 36, 68, 95)),
@@ -343,7 +343,7 @@ class _NumberTest extends State<NumberTest> {
             ),
             title: Center(
                 child: Text(
-              "!انتهى الوقت \n حصلت على نتيجة $sc/4",
+              "!انتهى الوقت \n حصلت على نتيجة $sc/8",
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 20, color: Color.fromARGB(255, 36, 68, 95)),
@@ -354,7 +354,7 @@ class _NumberTest extends State<NumberTest> {
               width: 150,
             ),
             actions: [
-                            Container(
+              Container(
                 width: 140,
                 child: RaisedButton.icon(
                   icon: Icon(
@@ -417,11 +417,18 @@ class NumbersGame {
     "assets/NumberTest/9.png",
     "assets/NumberTest/2text.png",
     "assets/NumberTest/5text.png",
-    "assets/NumberTest/4.png",
+    "assets/NumberTest/0.png",
     "assets/NumberTest/6text.png",
     "assets/NumberTest/9text.png",
+    "assets/NumberTest/0text.png",
+    "assets/NumberTest/1text.png",
+    "assets/NumberTest/3text.png",
+    "assets/NumberTest/8text.png",
+    "assets/NumberTest/1.png",
+    "assets/NumberTest/3.png",
+    "assets/NumberTest/8.png",
   ];
-  final int cardCount = 9;
+  final int cardCount = 16;
   List<Map<int, String>> matchCheck = [];
 
   //methods
