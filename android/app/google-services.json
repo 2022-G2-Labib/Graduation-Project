@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "803615818455",
+    "project_id": "labib-d349c",
+    "storage_bucket": "labib-d349c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803615818455:android:924ffea4a88483e0dca692",
+        "android_client_info": {
+          "package_name": "com.example.labib"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803615818455-qlvttbvbv2dcga4ruoela6brjrpc63a4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.labib",
+            "certificate_hash": "3db44382cafab96ab968d0be4349314c55f98d44"
+          }
+        },
+        {
+          "client_id": "803615818455-15ef8b34ui878qjsbg8p0ctlosibsutb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSHb5FM9Hn_DGQE0esSNerzLSF4DYIPRk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803615818455-15ef8b34ui878qjsbg8p0ctlosibsutb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
